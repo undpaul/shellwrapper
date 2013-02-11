@@ -34,10 +34,10 @@ then
   exit
 fi
 
-# Retrieving tag(s)
-# @TODO:
+# Retrieving tag(s).
 # -implement multiple tags
-TAG=${2}
+TAGS=$(echo "${2}" | tr "," "\n")
+
 
 # We store directory values, so we can restore them later.
 CURRENT_PWD=$(pwd)
@@ -48,8 +48,6 @@ SCRIPT_DIR=$(dirname "$SCRIPT_FILE")
 # either relative or absolute.
 cd "$SCRIPT_DIR"
 cd "$SHELL_FILES_DIR"
-
-
 
 # We add set -e, so the given scripts are all stopped whenever an error occured
 # within a single execution
@@ -66,14 +64,25 @@ echo "Starting on $(date "+%Y-%m-%d %H:%M:%S")"
 #   within the given call, that may be used within other parts
 #
 # As we use a wildcard, the for will return filenames in alphabetical order, as
-# statet in man bash (topic "Pathname Expansion").
+# stated in man bash (topic "Pathname Expansion").
 # We locate the parts dir as ., as we changed the dir, before this loop.
 for FILE in ./*
 do
   FILENAME=$(basename "$FILE")
 
+  TAG_FOUND=0
+  # We check first on the tag.
+  for TAG in $TAGS
+  do
+    if [[ "$FILENAME" == *."$TAG".sh ]] || [[ "$FILENAME" == *."$TAG".exportsh ]]
+    then
+      TAG_FOUND=1
+      break
+    fi
+  done
+
   # Execute sub shells (either with the specific tag or without any tag).
-  if [[ "$FILENAME" == *.sh ]] && ( [[ "$FILENAME" == *."$TAG".sh ]] || [[ "$FILENAME" != *.*.sh ]] )
+  if [[ "$FILENAME" == *.sh ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*.sh ]] )
   then
     echo "===================================================================="
     echo "SUBSHELL: $FILENAME"
@@ -84,7 +93,7 @@ do
 
   # Execute export shells (ending on .exportsh). Those scripts may provide
   # additional variables to the subshell calls by using the "export" command.
-  if [[ "$FILENAME" == *.exportsh ]] && ( [[ "$FILENAME" == *."$TAG".exportsh ]] || [[ "$FILENAME" != *.*.exportsh ]] )
+  if [[ "$FILENAME" == *.exportsh ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*.exportsh ]] )
   then
     echo "===================================================================="
     echo "EXPORTSHELL: $FILENAME"
@@ -95,7 +104,7 @@ do
 
 done
 
-# @TODO: log time
+# Logging time of the completion.
 echo "===================================================================="
 echo "Ending on $(date "+%Y-%m-%d %H:%M:%S")"
 
