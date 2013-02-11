@@ -1,0 +1,14 @@
+
+echo "This is a sourced setup script:"
+echo " - the exported variable will be available in other subshells."
+echo " - the original arguments are passed to this script"
+
+VAR1=var1
+export VAR2=var2
+
+echo "var1: $VAR1"
+echo "var2 (exported): $VAR2"
+echo "pwd: $( pwd )"
+echo "arg0: ${0}"
+echo "arg1: ${1}"
+echo "arg2: ${2}"
