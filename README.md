@@ -14,8 +14,8 @@ Features
 Arguments
 ---------
 
-1) The relative or absolute path of the folder the scripts are located.
-2) (optional) a string that is used as tag (currently only one is supported)
+1. The relative or absolute path of the folder the scripts are located.
+2. (optional) a string that is used as tag (currently only one is supported)
 
 Our use case
 ------------
@@ -42,5 +42,7 @@ Contact
 -------
 
 Originally created by Johannes Haseitl - johannes@undpaul.de
+
 undpaul GmbH - die Drupal Spezialisten
+
 http://www.undpaul.de
