@@ -24,6 +24,12 @@
 #
 ################################################################################
 
+# Constants for subshell and exportshell command and extension.
+readonly SUBSHELL_COMMAND="bash -e"
+readonly EXPORTSHELL_COMMAND="source"
+readonly SUBSHELL_EXT="sh"
+readonly EXPORTSHELL_EXT="exportsh"
+
 # We need to set a host domain, due to domain.module.
 SHELL_FILES_DIR=${1}
 
@@ -75,7 +81,7 @@ do
   # We check first on the tag.
   for TAG in $TAGS
   do
-    if [[ "$FILENAME" == *."$TAG".sh ]] || [[ "$FILENAME" == *."$TAG".exportsh ]]
+    if [[ "$FILENAME" == *."$TAG"."$SUBSHELL_EXT" ]] || [[ "$FILENAME" == *."$TAG"."$EXPORTSHELL_EXT" ]]
     then
       TAG_FOUND=1
       break
@@ -83,24 +89,24 @@ do
   done
 
   # Execute sub shells (either with the specific tag or without any tag).
-  if [[ "$FILENAME" == *.sh ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*.sh ]] )
+  if [[ "$FILENAME" == *."$SUBSHELL_EXT" ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*."$SUBSHELL_EXT" ]] )
   then
     echo "===================================================================="
     echo "SUBSHELL: $FILENAME"
     echo "TIME: $(date "+%Y-%m-%d %H:%M:%S")"
     echo "===================================================================="
-    bash -e "$FILE"
+    $SUBSHELL_COMMAND "$FILE"
   fi
 
   # Execute export shells (ending on .exportsh). Those scripts may provide
   # additional variables to the subshell calls by using the "export" command.
-  if [[ "$FILENAME" == *.exportsh ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*.exportsh ]] )
+  if [[ "$FILENAME" == *."$EXPORTSHELL_EXT" ]] && ( [[ $TAG_FOUND == 1 ]] || [[ "$FILENAME" != *.*."$EXPORTSHELL_EXT" ]] )
   then
     echo "===================================================================="
     echo "EXPORTSHELL: $FILENAME"
     echo "TIME: $(date "+%Y-%m-%d %H:%M:%S")"
     echo "===================================================================="
-    source "$FILE"
+    $EXPORTSHELL_COMMAND "$FILE"
   fi
 
 done
