@@ -20,6 +20,7 @@
 #    be called when that tag is given.
 #    Files that end on .TAG.sh or .TAG.exportsh will be called in that case.
 #    Otherwise those would not be called.
+#    Multiple tags can be separated by comma "," (e.g. stage,search)
 #
 ################################################################################
 

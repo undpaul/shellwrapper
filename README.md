@@ -3,6 +3,8 @@ Shellwrapper
 
 This script is a wrapper to run several shell scripts located in a folder.
 
+See example.sh for an example how to call.
+
 Features
 --------
 
@@ -15,7 +17,8 @@ Arguments
 ---------
 
 1. The relative or absolute path of the folder the scripts are located.
-2. (optional) a string that is used as tag (currently only one is supported)
+2. (optional) a string that is used as tag. Multiple tags can be separated by
+   comma ","
 
 Our use case
 ------------
