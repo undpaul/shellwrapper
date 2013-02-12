@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ################################################################################
 # Shell wrapper to execute subshells and exportshells of a specified directory.
 #
@@ -89,7 +89,7 @@ do
     echo "SUBSHELL: $FILENAME"
     echo "TIME: $(date "+%Y-%m-%d %H:%M:%S")"
     echo "===================================================================="
-    sh -e "$FILE";
+    bash -e "$FILE"
   fi
 
   # Execute export shells (ending on .exportsh). Those scripts may provide
