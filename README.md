@@ -46,6 +46,6 @@ Contact
 
 Originally created by Johannes Haseitl - johannes@undpaul.de
 
-undpaul GmbH - die Drupal Spezialisten
+undpaul GmbH - die Drupal-Spezialisten
 
 http://www.undpaul.de
