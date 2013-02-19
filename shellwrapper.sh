@@ -37,8 +37,8 @@ SHELL_FILES_DIR=${1}
 if [[ "$SHELL_FILES_DIR" == "" ]]
 then
   echo "The first argumented is mandatory, as it is the directory to call the shell files from!!"
-  # @TODO: how to invoke an error?
-  exit
+  # Exit with invoking an error.
+  exit 1
 fi
 
 # Retrieving tag(s).
