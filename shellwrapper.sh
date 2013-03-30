@@ -56,6 +56,9 @@ SCRIPT_DIR=$(dirname "$SCRIPT_FILE")
 cd "$SCRIPT_DIR"
 cd "$SHELL_FILES_DIR"
 
+# Now we can store the absolute value of the shell files directory
+SHELL_FILES_DIR_ABSOLUTE=$(pwd)
+
 # We add set -e, so the given scripts are all stopped whenever an error occured
 # within a single execution
 set -e
@@ -107,6 +110,11 @@ do
     echo "TIME: $(date "+%Y-%m-%d %H:%M:%S")"
     echo "===================================================================="
     $EXPORTSHELL_COMMAND "$FILE"
+
+    # As exportshells may navigate through the directories and also will change
+    # that for the wrapper, we make sure we land back in our shell files
+    # directory after calling the script.
+    cd $SHELL_FILES_DIR_ABSOLUTE
   fi
 
 done
