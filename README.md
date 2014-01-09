@@ -4,6 +4,7 @@ Shellwrapper
 This script is a wrapper to run several shell scripts located in a folder.
 
 See example.sh for an example how to call.
+A full usage example is available in https://github.com/undpaul/update_sh.
 
 Features
 --------
