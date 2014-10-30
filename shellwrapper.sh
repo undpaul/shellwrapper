@@ -30,13 +30,13 @@ readonly EXPORTSHELL_COMMAND="source"
 readonly SUBSHELL_EXT="sh"
 readonly EXPORTSHELL_EXT="exportsh"
 
-# We need to set a host domain, due to domain.module.
+# We need a directory to call the different shell files from.
 SHELL_FILES_DIR=${1}
 
 # Exit if we did not get a first argument
 if [[ "$SHELL_FILES_DIR" == "" ]]
 then
-  echo "The first argumented is mandatory, as it is the directory to call the shell files from!!"
+  echo "The first argument is mandatory, as it is the directory to call the shell files from!!"
   # Exit with invoking an error.
   exit 1
 fi
