@@ -1,0 +1,5 @@
+{
+  "name": "undpaul/shellwrapper",
+  "description": "Wrapper for running multiple bash script files.",
+  "type": "bash-script"
+}
