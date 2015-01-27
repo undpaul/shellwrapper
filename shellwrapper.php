@@ -62,6 +62,11 @@ foreach ($files as $file) {
 
   list( , $file_base, , $file_tag, $file_ext) = $matches;
 
+  // Skip the file if the given tag does not match.
+  if (!empty($file_tag) && !in_array($file_tag, $script->TAGS)) {
+    continue;
+  }
+
   if ($file_ext == $script->SUBSHELL_EXT) {
     echo "====================================================================\n";
     echo "SUBSHELL: $filename\n";
