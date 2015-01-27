@@ -77,6 +77,10 @@ foreach ($files as $file) {
   }
   elseif ($file_ext == $script->EXPORTSHELL_EXT) {
     // @todo
+    echo "====================================================================\n";
+    echo "EXPORTSHELL: $filename\n";
+    echo "TIME: " . date('Y-m-d h:i:s') . "\n";
+    echo "====================================================================\n";
     echo "{$script->EXPORTSHELL_COMMAND} $file\n";
 
     # As exportshells may navigate through the directories and also will change
