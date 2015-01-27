@@ -72,16 +72,14 @@ foreach ($files as $file) {
     echo "SUBSHELL: $filename\n";
     echo "TIME: " . date('Y-m-d h:i:s') . "\n";
     echo "====================================================================\n";
-    // @todo
-    echo "{$script->SUBSHELL_COMMAND} $file\n";
+    passthru("{$script->SUBSHELL_COMMAND} $file\n");
   }
   elseif ($file_ext == $script->EXPORTSHELL_EXT) {
-    // @todo
     echo "====================================================================\n";
     echo "EXPORTSHELL: $filename\n";
     echo "TIME: " . date('Y-m-d h:i:s') . "\n";
     echo "====================================================================\n";
-    echo "{$script->EXPORTSHELL_COMMAND} $file\n";
+    passthru("{$script->EXPORTSHELL_COMMAND} $file\n");
 
     # As exportshells may navigate through the directories and also will change
     # that for the wrapper, we make sure we land back in our shell files
