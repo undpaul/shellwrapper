@@ -54,8 +54,6 @@ echo 'Starting on ' . date('Y-m-d h:i:s') . "\n";
 $it = new \RecursiveDirectoryIterator($script->SHELL_FILES_DIR_ABSOLUTE);
 $files = new \RecursiveIteratorIterator($it, \RecursiveIteratorIterator::SELF_FIRST);
 foreach ($files as $file) {
-  echo "[ ] $file \n";
-
   $filename = basename($file);
   $pattern = '/^([\w]+)\.(([\w]+)\.)?(' . preg_quote($script->SUBSHELL_EXT) . '|' . preg_quote($script->EXPORTSHELL_EXT). ')$/';
   $matches = array();
