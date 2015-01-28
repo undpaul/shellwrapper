@@ -17,7 +17,10 @@ if (empty($argv[1])) {
 $script->SHELL_FILES_DIR = $argv[1];
 
 // Retrieving tags from second argument.
-$script->TAGS = explode(',', $argv[2]);
+$script->TAGS = array();
+if (isset($argv[2])) {
+  $script->TAGS = explode(',', $argv[2]);
+}
 array_walk($script->TAGS, 'trim');
 
 // We store directory values, so we can restore them later.
