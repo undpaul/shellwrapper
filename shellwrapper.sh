@@ -114,7 +114,7 @@ do
     # As exportshells may navigate through the directories and also will change
     # that for the wrapper, we make sure we land back in our shell files
     # directory after calling the script.
-    cd $SHELL_FILES_DIR_ABSOLUTE
+    cd "$SHELL_FILES_DIR_ABSOLUTE"
   fi
 
 done
